@@ -29,8 +29,8 @@ class CabInvoiceGeneratorTest {
     @Test
     public void givenMultipleRides_ShouldReturnTotalFare() {
         InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
-        Ride[] rides = { new Ride(2.0, 5),
-                         new Ride(0.1, 1)
+        Ride[] rides = { new Ride(2.0, 5, InvoiceGenerator.RideType.NORMALRIDE),
+                         new Ride(0.1, 1, InvoiceGenerator.RideType.NORMALRIDE)
                         };
         //double fare = invoiceGenerator.calculateFare(rides);
         //Assertions.assertEquals(30, fare, 0.0);
@@ -44,9 +44,23 @@ class CabInvoiceGeneratorTest {
         InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
         String[] userId = {"user1", "user2", "user3"};
         Ride[][] rides ={
-                {new Ride(5.0, 12), new Ride(2.5, 6)},
-                {new Ride(3.0, 5), new Ride(0.01, 1)},
-                {new Ride(10.0, 15), new Ride(2, 30)} };
+                {new Ride(5.0, 12, InvoiceGenerator.RideType.NORMALRIDE), new Ride(2.5, 6, InvoiceGenerator.RideType.NORMALRIDE)},
+                {new Ride(3.0, 5, InvoiceGenerator.RideType.NORMALRIDE), new Ride(0.01, 1, InvoiceGenerator.RideType.NORMALRIDE)},
+                {new Ride(10.0, 15, InvoiceGenerator.RideType.NORMALRIDE), new Ride(2, 30, InvoiceGenerator.RideType.NORMALRIDE)} };
+        invoiceGenerator.addRideToRepositoy(userId, rides);
+        InvoiceSummary summery = invoiceGenerator.invoiceForUser(userId[2]);
+        InvoiceSummary expectedInvoiceSummery = new InvoiceSummary(rides[2].length, 165.0);
+        Assertions.assertEquals(expectedInvoiceSummery, summery);
+    }
+
+    @Test
+    public void givenUserId_ShouldReturnInvoiceSummaryOfTwoDifferentRide() throws InvoiceGeneratorException {
+        InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
+        String[] userId = {"user1", "user2", "user3"};
+        Ride[][] rides ={
+                {new Ride(5.0, 12, InvoiceGenerator.RideType.NORMALRIDE), new Ride(2.5, 6, InvoiceGenerator.RideType.NORMALRIDE)},
+                {new Ride(3.0, 5, InvoiceGenerator.RideType.NORMALRIDE), new Ride(0.01, 1, InvoiceGenerator.RideType.PREMIUMRIDE)},
+                {new Ride(10.0, 15, InvoiceGenerator.RideType.PREMIUMRIDE), new Ride(2, 30, InvoiceGenerator.RideType.PREMIUMRIDE)} };
         invoiceGenerator.addRideToRepositoy(userId, rides);
         InvoiceSummary summery = invoiceGenerator.invoiceForUser(userId[2]);
         InvoiceSummary expectedInvoiceSummery = new InvoiceSummary(rides[2].length, 165.0);

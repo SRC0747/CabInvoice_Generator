@@ -2,15 +2,23 @@ package com.cabinvoicegenerator;
 
 public class InvoiceGenerator {
 
-    private static final double MINIMUM_COST_PER_KILLOMETER = 10;
-    private static final int COST_PER_TIME = 1;
-    private static final double MINIMUM_FARE = 5;
+    private static  double MINIMUM_COST_PER_KILLOMETER ;
+    private static int COST_PER_TIME;
+    private static  double MINIMUM_FARE;
     RideRepository rideRepository;
     public InvoiceGenerator()
     {
         rideRepository = new RideRepository();
     }
 
+    public enum RideType { NORMALRIDE, PREMIUMRIDE }
+    public  RideType ridetype;
+
+    InvoiceGenerator(double MINIMUM_COST_PER_KILLOMETER, int COST_PER_TIME, RideType rideType){
+        this.MINIMUM_COST_PER_KILLOMETER = MINIMUM_COST_PER_KILLOMETER;
+        this.COST_PER_TIME = COST_PER_TIME;
+        this.ridetype = rideType;
+    }
     public double calculateFare(double distance, int time) {
         double totalFare = distance * MINIMUM_COST_PER_KILLOMETER + time * COST_PER_TIME;
         //if(totalFare < MINIMUM_FARE)
