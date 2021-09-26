@@ -63,7 +63,7 @@ class CabInvoiceGeneratorTest {
                 {new Ride(10.0, 15, InvoiceGenerator.RideType.PREMIUMRIDE), new Ride(2, 30, InvoiceGenerator.RideType.PREMIUMRIDE)} };
         invoiceGenerator.addRideToRepositoy(userId, rides);
         InvoiceSummary summery = invoiceGenerator.invoiceForUser(userId[2]);
-        InvoiceSummary expectedInvoiceSummery = new InvoiceSummary(rides[2].length, 165.0);
+        InvoiceSummary expectedInvoiceSummery = new InvoiceSummary(rides[2].length, 205.0);
         Assertions.assertEquals(expectedInvoiceSummery, summery);
     }
 }

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.cabinvoicegenerator.CabInvoiceGeneratorTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-09-26T16:38:54" hostname="DESKTOP-U9VT6NQ" time="0.041">
+<testsuite name="com.cabinvoicegenerator.CabInvoiceGeneratorTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-09-26T17:17:32" hostname="DESKTOP-U9VT6NQ" time="0.269">
   <properties/>
-  <testcase name="givenUserId_ShouldReturnInvoiceSummary()" classname="com.cabinvoicegenerator.CabInvoiceGeneratorTest" time="0.041">
-    <failure message="org.opentest4j.AssertionFailedError: expected: &lt;com.cabinvoicegenerator.InvoiceSummary@74d2ce06&gt; but was: &lt;com.cabinvoicegenerator.InvoiceSummary@2f2a99e6&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;com.cabinvoicegenerator.InvoiceSummary@74d2ce06&gt; but was: &lt;com.cabinvoicegenerator.InvoiceSummary@2f2a99e6&gt;
+  <testcase name="givenUserId_ShouldReturnInvoiceSummaryOfTwoDifferentRide()" classname="com.cabinvoicegenerator.CabInvoiceGeneratorTest" time="0.269">
+    <failure message="org.opentest4j.AssertionFailedError: expected: &lt;com.cabinvoicegenerator.InvoiceSummary@434b1992&gt; but was: &lt;com.cabinvoicegenerator.InvoiceSummary@12fcf927&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;com.cabinvoicegenerator.InvoiceSummary@434b1992&gt; but was: &lt;com.cabinvoicegenerator.InvoiceSummary@12fcf927&gt;
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
 	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
 	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
 	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
-	at com.cabinvoicegenerator.CabInvoiceGeneratorTest.givenUserId_ShouldReturnInvoiceSummary(CabInvoiceGeneratorTest.java:53)
+	at com.cabinvoicegenerator.CabInvoiceGeneratorTest.givenUserId_ShouldReturnInvoiceSummaryOfTwoDifferentRide(CabInvoiceGeneratorTest.java:67)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

@@ -2,9 +2,13 @@ package com.cabinvoicegenerator;
 
 public class InvoiceGenerator {
 
-    private static  double MINIMUM_COST_PER_KILLOMETER ;
-    private static int COST_PER_TIME;
-    private static  double MINIMUM_FARE;
+    private static final double NORMAL_MINIMUM_COST_PER_KILLOMETER = 10.0;
+    private static final int NORMAL_COST_PER_TIME = 1;
+    private static final double NORMAL_MINIMUM_FARE =5;
+    private static final double PREMIUM_MINIMUM_COST_PER_KILLOMETER = 15.0;
+    private static final int PREMIUM_COST_PER_TIME = 2;
+    private static final double PREMIUM_MINIMUM_FARE = 20;
+
     RideRepository rideRepository;
     public InvoiceGenerator()
     {
@@ -14,16 +18,24 @@ public class InvoiceGenerator {
     public enum RideType { NORMALRIDE, PREMIUMRIDE }
     public  RideType ridetype;
 
-    InvoiceGenerator(double MINIMUM_COST_PER_KILLOMETER, int COST_PER_TIME, RideType rideType){
-        this.MINIMUM_COST_PER_KILLOMETER = MINIMUM_COST_PER_KILLOMETER;
-        this.COST_PER_TIME = COST_PER_TIME;
+
+    InvoiceGenerator(double NORMAL_MINIMUM_COST_PER_KILLOMETER, int NORMAL_COST_PER_TIME, RideType rideType){
+        this.NORMAL_MINIMUM_COST_PER_KILLOMETER = NORMAL_MINIMUM_COST_PER_KILLOMETER;
+        this.NORMAL_COST_PER_TIME = NORMAL_COST_PER_TIME;
+        this.ridetype = rideType;
+    }
+    InvoiceGenerator(double PREMIUM_MINIMUM_COST_PER_KILLOMETER, int PREMIUM_COST_PER_TIME, RideType rideType){
+        this.PREMIUM_MINIMUM_COST_PER_KILLOMETER = PREMIUM_MINIMUM_COST_PER_KILLOMETER;
+        this.PREMIUM_COST_PER_TIME = PREMIUM_COST_PER_TIME;
         this.ridetype = rideType;
     }
     public double calculateFare(double distance, int time) {
-        double totalFare = distance * MINIMUM_COST_PER_KILLOMETER + time * COST_PER_TIME;
+        double totalFare_NormalRide = distance * NORMAL_MINIMUM_COST_PER_KILLOMETER + time * NORMAL_COST_PER_TIME;
+        double totalFare_PremiumRide = distance * PREMIUM_MINIMUM_COST_PER_KILLOMETER + time * PREMIUM_COST_PER_TIME;
         //if(totalFare < MINIMUM_FARE)
            // return MINIMUM_FARE;
-        return Math.max(totalFare, MINIMUM_FARE);
+        return Math.max(totalFare_NormalRide, NORMAL_MINIMUM_FARE);
+        return Math.max(totalFare_PremiumRide, PREMIUM_MINIMUM_FARE);
     }
 
     public InvoiceSummary calculateFare(Ride[] rides) {
