@@ -1,13 +1,13 @@
 package com.cabinvoicegenerator;
 
-public class Ride extends InvoiceGenerator{
-    public final double distance;
+public class Ride{
     public final int time;
-    public RideType rideType;
+    public final double distance;
+    public final InvoiceService.RideMode rideMode;
 
-    public Ride(double distance, int time, RideType rideType) {
+    public Ride(double distance, int time, InvoiceService.RideMode rideMode) {
         this.distance = distance;
         this.time = time;
-        this.rideType = rideType;
+        this.rideMode = rideMode;
     }
 }

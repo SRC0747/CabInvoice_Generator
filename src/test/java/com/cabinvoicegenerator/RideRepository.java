@@ -3,16 +3,24 @@ package com.cabinvoicegenerator;
 import java.util.*;
 
 public class RideRepository {
-    Map<String, Ride[]> userRides = new HashMap<>();
+    Map<String, Ride[]> userRides;
 
-    public Ride[] getRidesForUser(String userId) {
-        return userRides.get(userId);
+    public RideRepository() {
+
+        this.userRides = new HashMap<>();
     }
 
-    public void addRideForUser(String userId, Ride[] ride) throws InvoiceGeneratorException {
+    public void addRides(String userId, Ride[] rides) throws InvoiceGeneratorException {
         if (userRides.containsKey(userId))
             throw new InvoiceGeneratorException(InvoiceGeneratorException.ExceptionType.USER_ALREADY_EXISTS,
                     "User ID Already Exists!!!");
-        userRides.put(userId, ride);
+        else
+            userRides.put(userId, rides);
+    }
+
+    public Ride[] getRides(String[] userId) {
+        return this.userRides.get(userId[0]);
+
+
     }
 }
